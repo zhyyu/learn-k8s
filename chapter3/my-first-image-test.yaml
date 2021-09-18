@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-first-image-pod
+spec:
+  containers:
+    - name: my-first-image-container
+      image: zhyyu2016/my-first-image
+      ports:
+        - containerPort: 8088
+          protocol: TCP

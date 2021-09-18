@@ -22,6 +22,7 @@
   - kubectl run my-first-image --image=zhyyu2016/my-first-image --port=8088
 - 列出 pod
   - kubectl get pods
+  - kubectl get pods -A (包含其他namespace pod)
 - 创建一个服务对象
   - kubectl expose pod my-first-image --type=LoadBalancer --name my-first-image-http
   - minikube: minikube service my-first-image-http 获取可以访问服务的 IP 和端口
