@@ -11,6 +11,8 @@
 - kubectl port-forward my-first-image-pod 8099:8088
   - 另一终端可执行： curl localhost:8099
 
+---
+
 # 展示 label
 - kubectl get po --show-labels 
 - kubectl get pod -L creation_method,env
@@ -27,6 +29,7 @@
 - kubectl get po -l '!env'
 - kubectl get po -l creation_method=manual,env=debug
 
+--- 
 # 获取所有命名空间
 - kubectl get namespaces
 
@@ -47,6 +50,8 @@
 
 # 修改上下文namespace
 - kubectl config set-context --current --namespace my-namespace1
+
+--- 
 
 # 删除pod
 - kubectl delete po my-first-image

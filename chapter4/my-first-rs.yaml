@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-first-sc01
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-first-app01
+  template:
+    metadata:
+      labels:
+        app: my-first-app01
+    spec:
+      containers:
+        - name: my-first-container
+          image: zhyyu2016/my-first-image
+          ports:
+            - containerPort: 8088

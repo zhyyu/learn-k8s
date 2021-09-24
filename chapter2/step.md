@@ -29,6 +29,6 @@
 - 列出服务
   - kubectl get services
 - 列出 pod 时显示 pod IP 和 pod 的节点
-  - kubec七1 ge七pods -o wide
+  - kubectl get pods -o wide
 - 使用kubectl describe 查看 pod 的其他细节
   - kubectl describe pod kubia-hczji
