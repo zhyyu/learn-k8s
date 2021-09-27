@@ -17,14 +17,14 @@
 - curl my-first-svc.default.svc.cluster.local:8090
 - curl my-first-svc.default:8090
 - curl my-first-svc:8090
-- 格式为: 服务名.命名空间.svc.cluster.local , 若命名空间相同（且为默认）， 可省略 default.svc.cluster.local
+- 格式为: 服务名.命名空间.svc.cluster.local , 若命名空间相同， 可省略 namespace.svc.cluster.local
 ```
 root@my-first-rc01-5jjt4:/# cat /etc/resolv.conf 
 nameserver 10.96.0.10
 search default.svc.cluster.local svc.cluster.local cluster.local
 ```
-  - 注意search 参数， 只有默认命名空间可以省略default.svc.cluster.local
-    - 如给出 my-svc.my-namespace, 则会根据search 参数自动拼接为 my-svc.my-namespace.svc.cluster.local
+  - 注意search 参数
+    - 如给出 my-svc.default, 则会根据search 参数自动拼接为 my-svc.default.svc.cluster.local
   - 域名可以 telnet curl 通， 但是不能ping 通
 
 ---
