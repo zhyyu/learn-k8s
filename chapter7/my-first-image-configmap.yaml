@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-first-image-pod-configmap
+spec:
+  containers:
+    - name: my-first-image-container
+      image: zhyyu2016/my-first-image
+      envFrom:
+        - configMapRef:
+            name: my-first-configmap01
+      ports:
+        - containerPort: 8088
+          protocol: TCP
