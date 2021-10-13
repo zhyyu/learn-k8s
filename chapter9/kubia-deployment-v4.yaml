@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubia-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: kubia-pod
+      labels:
+        app: kubia
+    spec:
+      containers:
+        - image: luksa/kubia:v4
+          name: kubia-container
+  selector:
+    matchLabels:
+      app: kubia
