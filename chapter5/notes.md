@@ -57,5 +57,38 @@ search default.svc.cluster.local svc.cluster.local cluster.local
 ---
 # 其他
 - kubectl apply 可以修改k8s 资源（kubectl create 必须先删除再创建）
-- 快速创建pod
-  - kubectl run dnsutils --image tutum/dnsutils
+
+# headless
+- 创建headless svc
+  - kubectl create -f my-first-svc-headless.yaml （clusterIP: None）
+- 创建dns 查询pod
+  - kubectl run dnstuils --image tutum/dnsutils --command -- sleep infinity
+- 和普通svc 区别
+  ```
+  root@dnstuils:/# nslookup my-first-svc
+  Server:         10.96.0.10
+  Address:        10.96.0.10#53
+  
+  Name:   my-first-svc.default.svc.cluster.local
+  Address: 10.101.231.141
+
+  root@dnstuils:/# nslookup my-first-svc-headless
+  Server:         10.96.0.10
+  Address:        10.96.0.10#53
+  
+  Name:   my-first-svc-headless.default.svc.cluster.local
+  Address: 172.17.0.4
+  Name:   my-first-svc-headless.default.svc.cluster.local
+  Address: 172.17.0.8
+  Name:   my-first-svc-headless.default.svc.cluster.local
+  Address: 172.17.0.18
+  
+  yuzhongyu@yuzhongyudeMacBook-Air chapter5 % kubectl get svc
+  NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+  my-first-svc            ClusterIP      10.101.231.141   <none>        8090/TCP         22d
+  my-first-svc-headless   ClusterIP      None             <none>        80/TCP           4s
+
+  ```
+  - headless svc 没有CLUSTER-IP 
+  - 在pod 中 headless svc dns 查询返回svc 对应pod ip
+  - 在pod 中 普通 svc dns 查询返回svc CLUSTER-IP
