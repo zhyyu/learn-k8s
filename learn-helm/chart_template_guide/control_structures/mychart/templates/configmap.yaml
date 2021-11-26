@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  drink: {{ .Values.favorite.drink | quote }}
+  food: {{ .Values.favorite.food | upper | quote}}
+  {{- if eq .Values.favorite.drink "coffee" }}
+    {{- nindent 2 "mug: true" }}
+  mug2: false
+  {{- end }}
+  
+  {{- with .Values.favorite}}
+  mug3: {{ .drink }}
+  mug4: {{ $.Values.favorite.drink }}
+  mug5: {{ $.Release.Name }}
+  {{- end}}
+
+  toppings: |-
+    {{- range .Values.pizzaToppings}}
+    - {{ . | quote}}
+    {{- end }}
